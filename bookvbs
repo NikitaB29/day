@@ -1,0 +1,37 @@
+                'BOOK MANAGEMENT SYSTEM
+		Set  Books = CreateObject("Scripting.Dictionary")      			 'creating object for Dictionary
+		Books.Add "10001", "RDBMS : 1000 : Jack Publications : DB"	
+		Books.Add "10002", "NETWORKING : 5000 : NET Publications : CNE"	         'Adding key:value pairs for Dictionary
+
+		BookId = InputBox("Enter The BookId :")                                  'Accepting value from user for Book Id
+		Function BookId_check()
+			calkeys = Books.Keys
+			for each Intkey in calkeys
+				if (Intkey=BookId) Then
+				x = MsgBox ("Book ID already exists",vbCritical)	'if condition to check if the book already exists
+				document.write(x)
+				BookId = InputBox("Enter The BookId")
+				BookId_check()
+			End If
+			next
+		End Function
+		BookId_check()
+		
+		BookName = InputBox("Enter The Book Name")
+		BookPrice = Cint(InputBox("Enter The Book Price"))			'user inputs book details in the inputbox
+		BookPublisher = InputBox("Enter The Publisher of the book")
+		BookLoT = InputBox("Enter The Book LoT")
+		MsgBox("Book added succesfully")                                        'Printing message book added successfully
+
+		BookDetails = BookName&" : "&BookPrice&" : "&BookPublisher&" : "&BookLoT       'Display book details
+		Books.Add BookId,BookDetails
+		
+
+		callkeys = Books.Keys
+		callItems = Books.Items
+		for each strkey in callkeys
+			MsgBox "BookID : "&strkey					'the input details entered are printed in message box
+		next
+		for each stritem in callItems
+			MsgBox "Book Details : "&stritem
+		next
